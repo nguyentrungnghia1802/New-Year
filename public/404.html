@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Year 2027</title>
   <script>
-    // Redirect all 404s to index.html for SPA routing
+    // Redirect all 404s to index.html for SPA routing, preserving the path
     var pathSegments = location.pathname.split('/').filter(function(s) { return s; });
-    var newPath = '/' + (pathSegments[0] || '');
-    location.replace(newPath + '/' + (location.search || '') + (location.hash || ''));
+    // Remove the repo name from segments and join the rest
+    var repoName = pathSegments[0]; // 'New-Year'
+    var subPath = pathSegments.slice(1).join('/'); // 'lixi', 'fortune', etc.
+    var redirect = '/' + repoName + '/' + (location.search || '');
+    // Store the sub-path in sessionStorage to be read by the app
+    sessionStorage.redirect = subPath;
+    location.replace(redirect);
   </script>
 </head>
 <body>
