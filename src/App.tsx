@@ -9,7 +9,7 @@ import './index.css';
 function App() {
   return (
     <AudioProvider>
-      <Router>
+      <Router basename="/New-Year">
         <div className="min-h-screen w-full overflow-x-hidden">
           <Routes>
             <Route path="/" element={<HomePage />} />

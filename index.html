@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chúc Mừng Năm Mới - Tết 2027</title>
     
+    <!-- GitHub Pages SPA routing -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
+    
     <!-- Preload fireworks resources -->
     <link rel="prefetch" href="/js/fscreen.js">
     <link rel="prefetch" href="/js/Stage.js">
