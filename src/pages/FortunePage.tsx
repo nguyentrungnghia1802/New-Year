@@ -124,6 +124,16 @@ const FortunePage: React.FC = () => {
         <div className="absolute bottom-10 right-10 text-6xl animate-spin" style={{ animationDuration: '15s' }}>⭐</div>
       </div>
 
+      {/* Home Button - Top Left */}
+      {!showResult && (
+        <button
+          onClick={() => navigate('/')}
+          className="fixed top-4 left-4 z-50 bg-white/80 backdrop-blur-sm text-gray-800 px-3 py-2 md:px-6 md:py-3 rounded-full font-bold text-sm md:text-base hover:bg-white transition-all duration-300 shadow-lg border-2 border-gray-300 hover:scale-105"
+        >
+          🏠 VỀ TRANG CHỦ
+        </button>
+      )}
+
       {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}

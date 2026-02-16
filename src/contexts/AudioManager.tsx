@@ -16,9 +16,15 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (!audioRef.current) {
       audioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/new-year.mp3`);
       audioRef.current.loop = true;
-      audioRef.current.muted = false;
-      // Auto-play when component mounts
-      audioRef.current.play().catch(err => console.log('Audio autoplay failed:', err));
+      audioRef.current.volume = 0.5;
+      // Auto-play when component mounts with user interaction fallback
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(err => {
+          console.log('Audio autoplay prevented by browser:', err);
+          // Browser blocked autoplay, will play when user clicks toggle
+        });
+      }
     }
 
     return () => {
@@ -33,10 +39,11 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setMuted((prevMuted) => {
       if (audioRef.current) {
         if (prevMuted) {
+          // Was muted, now unmute and play
           audioRef.current.play().catch(err => console.log('Audio play failed:', err));
-          audioRef.current.muted = false;
         } else {
-          audioRef.current.muted = true;
+          // Was playing, now pause
+          audioRef.current.pause();
         }
       }
       return !prevMuted;

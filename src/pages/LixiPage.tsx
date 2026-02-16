@@ -72,9 +72,6 @@ const LixiPage: React.FC = () => {
 
   return (
     <div className="relative min-h-screen w-full bg-gradient-to-br from-orange-100 via-yellow-50 to-red-100 overflow-hidden">
-      {/* Background decoration with traditional bridge/pagoda illustration */}
-      <div className="absolute inset-0 opacity-20 bg-cover bg-center" style={{backgroundImage: `url(${import.meta.env.BASE_URL}images/background/traditional-bg.png)`}}></div>
-      
       {/* Home Button - Top Left */}
       {!selectedEnvelope && (
         <button
