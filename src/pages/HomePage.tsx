@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   // Đếm ngược đến Tết âm lịch 2026 (Bính Ngọ) - 17/02/2026
   // TEST: 17:15 hôm nay
   useEffect(() => {
-    const targetDate = new Date('2026-02-16T19:00:00').getTime();
+    const targetDate = new Date('2026-02-17T00:00:00').getTime();
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
@@ -150,13 +150,13 @@ const HomePage: React.FC = () => {
             
             {/* Locked Badge */}
             {!isUnlocked && (
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center bg-black/80 backdrop-blur-md rounded-xl px-3 py-2 pointer-events-none z-20 shadow-lg">
-                <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1">🔒 Mở sau:</div>
-                <div className="flex gap-1 text-white text-xs">
-                  <span className="bg-red-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.days).padStart(2, '0')}d</span>
-                  <span className="bg-red-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.hours).padStart(2, '0')}h</span>
-                  <span className="bg-red-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.minutes).padStart(2, '0')}m</span>
-                  <span className="bg-red-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center border-2 border-yellow-400/80 rounded-xl px-3 py-2 pointer-events-none z-20">
+                <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1" style={{textShadow: '0 0 8px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.9)'}}>🔒 Mở sau:</div>
+                <div className="flex gap-1 text-xs">
+                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
                 </div>
               </div>
             )}
@@ -178,13 +178,13 @@ const HomePage: React.FC = () => {
             
             {/* Locked Badge */}
             {!isUnlocked && (
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center bg-black/80 backdrop-blur-md rounded-xl px-3 py-2 pointer-events-none z-20 shadow-lg">
-                <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1">🔒 Mở sau:</div>
-                <div className="flex gap-1 text-white text-xs">
-                  <span className="bg-yellow-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.days).padStart(2, '0')}d</span>
-                  <span className="bg-yellow-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.hours).padStart(2, '0')}h</span>
-                  <span className="bg-yellow-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.minutes).padStart(2, '0')}m</span>
-                  <span className="bg-yellow-600/90 px-1.5 py-0.5 rounded font-semibold">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center border-2 border-yellow-400/80 rounded-xl px-3 py-2 pointer-events-none z-20">
+                <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1" style={{textShadow: '0 0 8px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.9)'}}>🔒 Mở sau:</div>
+                <div className="flex gap-1 text-xs">
+                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
                 </div>
               </div>
             )}
