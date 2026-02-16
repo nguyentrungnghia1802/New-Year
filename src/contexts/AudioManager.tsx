@@ -23,11 +23,13 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
+            // Autoplay succeeded
             setMuted(false);
           })
           .catch(err => {
             console.log('Audio autoplay prevented by browser:', err);
-            setMuted(true); // Set muted to true since it's not playing
+            // Keep muted = false, so user sees speaker icon and can click to play
+            setMuted(false);
           });
       }
     }
