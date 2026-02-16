@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
   // Đếm ngược đến Tết âm lịch 2026 (Bính Ngọ) - 17/02/2026
   // TEST: 17:15 hôm nay
   useEffect(() => {
-    const targetDate = new Date('2026-02-16T20:20:00').getTime();
+    const targetDate = new Date('2026-02-16T20:08:00').getTime();
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
