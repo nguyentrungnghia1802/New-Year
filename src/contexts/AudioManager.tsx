@@ -3,6 +3,8 @@ import React, { createContext, useContext, useRef, useState, useEffect, useMemo,
 interface AudioContextType {
   muted: boolean;
   toggleMute: () => void;
+  pauseBackgroundMusic: () => void;
+  resumeBackgroundMusic: () => void;
 }
 
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
@@ -75,7 +77,19 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       });
   }, []);
 
-  const value = useMemo(() => ({ muted, toggleMute }), [muted, toggleMute]);
+  const pauseBackgroundMusic = useCallback(() => {
+    if (audioRef.current && !audioRef.current.paused) {
+      audioRef.current.pause();
+    }
+  }, []);
+
+  const resumeBackgroundMusic = useCallback(() => {
+    if (audioRef.current && audioRef.current.paused && !muted) {
+      audioRef.current.play().catch(err => console.log('Resume failed:', err));
+    }
+  }, [muted]);
+
+  const value = useMemo(() => ({ muted, toggleMute, pauseBackgroundMusic, resumeBackgroundMusic }), [muted, toggleMute, pauseBackgroundMusic, resumeBackgroundMusic]);
 
   return (
     <AudioContext.Provider value={value}>

@@ -8,7 +8,9 @@ const HomePage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [hasPlayedBell, setHasPlayedBell] = useState(false);
-  const { muted, toggleMute } = useAudioManager();
+  const [showBellAnimation, setShowBellAnimation] = useState(false);
+  const [showCelebrationModal, setShowCelebrationModal] = useState(false);
+  const { muted, toggleMute, pauseBackgroundMusic, resumeBackgroundMusic } = useAudioManager();
 
   // Đếm ngược đến Tết âm lịch 2026 (Bính Ngọ) - 17/02/2026
   // TEST: 17:15 hôm nay
@@ -38,8 +40,17 @@ const HomePage: React.FC = () => {
   // Phát âm thanh chuông khi unlock
   useEffect(() => {
     if (isUnlocked && !hasPlayedBell) {
+      setHasPlayedBell(true);
+      
+      // Pause background music
+      pauseBackgroundMusic();
+      
+      // Show bell animation
+      setShowBellAnimation(true);
+      
+      // Play loud bell sound 3 times
       const bell = new Audio(`${import.meta.env.BASE_URL}audio/ting-ting.mp3`);
-      bell.volume = 0.7;
+      bell.volume = 1.0; // Max volume since current file is quiet
       let playCount = 0;
       
       const playBell = () => {
@@ -47,14 +58,22 @@ const HomePage: React.FC = () => {
           bell.currentTime = 0;
           bell.play().catch(err => console.log('Bell play failed:', err));
           playCount++;
-          setTimeout(playBell, 1000); // Lặp sau 1 giây
+          if (playCount < 3) {
+            setTimeout(playBell, 1200); // Pause between rings
+          } else {
+            // After 3 rings, hide bell and show celebration modal
+            setTimeout(() => {
+              setShowBellAnimation(false);
+              resumeBackgroundMusic();
+              setShowCelebrationModal(true);
+            }, 1500);
+          }
         }
       };
       
       playBell();
-      setHasPlayedBell(true);
     }
-  }, [isUnlocked, hasPlayedBell]);
+  }, [isUnlocked, hasPlayedBell, pauseBackgroundMusic, resumeBackgroundMusic]);
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -153,10 +172,10 @@ const HomePage: React.FC = () => {
               <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center border-2 border-yellow-400/80 rounded-xl px-3 py-2 pointer-events-none z-20">
                 <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1" style={{textShadow: '0 0 8px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.9)'}}>🔒 Mở sau:</div>
                 <div className="flex gap-1 text-xs">
-                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
-                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
-                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
-                  <span className="bg-red-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
+                  <span className="text-red-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="text-red-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="text-red-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="text-red-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
                 </div>
               </div>
             )}
@@ -181,10 +200,10 @@ const HomePage: React.FC = () => {
               <div className="absolute top-2 left-1/2 transform -translate-x-1/2 flex flex-col items-center border-2 border-yellow-400/80 rounded-xl px-3 py-2 pointer-events-none z-20">
                 <div className="text-yellow-300 font-bold text-xs md:text-sm mb-1" style={{textShadow: '0 0 8px rgba(0,0,0,0.9), 0 0 4px rgba(0,0,0,0.9)'}}>🔒 Mở sau:</div>
                 <div className="flex gap-1 text-xs">
-                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
-                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
-                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
-                  <span className="bg-yellow-600/95 text-white px-1.5 py-0.5 rounded font-semibold" style={{textShadow: '0 1px 2px rgba(0,0,0,0.5)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
+                  <span className="text-yellow-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="text-yellow-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="text-yellow-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="text-yellow-400 px-1.5 py-0.5 font-bold" style={{textShadow: '0 0 10px rgba(0,0,0,0.95), 0 0 5px rgba(0,0,0,0.95), 0 2px 4px rgba(0,0,0,0.8)'}}>{String(timeLeft.seconds).padStart(2, '0')}s</span>
                 </div>
               </div>
             )}
@@ -201,6 +220,65 @@ const HomePage: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Bell Animation */}
+      {showBellAnimation && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="text-9xl animate-bounce" style={{
+            animation: 'bellShake 0.5s ease-in-out infinite, bounce 1s ease-in-out infinite',
+            transformOrigin: 'center top'
+          }}>
+            🔔
+          </div>
+        </div>
+      )}
+
+      {/* Celebration Modal */}
+      {showCelebrationModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md animate-fadeIn">
+          <div className="bg-gradient-to-br from-red-600 via-yellow-500 to-red-600 rounded-3xl shadow-2xl p-8 md:p-12 max-w-lg mx-4 transform animate-scaleIn relative overflow-hidden">
+            {/* Decorative elements */}
+            <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+              <div className="absolute top-4 left-4 text-4xl animate-spin" style={{animationDuration: '3s'}}>🎆</div>
+              <div className="absolute top-4 right-4 text-4xl animate-spin" style={{animationDuration: '3s', animationDirection: 'reverse'}}>🎇</div>
+              <div className="absolute bottom-4 left-4 text-4xl animate-bounce">🧧</div>
+              <div className="absolute bottom-4 right-4 text-4xl animate-bounce" style={{animationDelay: '0.2s'}}>🧧</div>
+            </div>
+
+            <div className="relative z-10 text-center">
+              <div className="text-6xl md:text-7xl mb-6 animate-bounce">🎉</div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4" style={{
+                fontFamily: 'Dancing Script, cursive',
+                textShadow: '0 0 20px rgba(255,215,0,0.8), 0 4px 8px rgba(0,0,0,0.5)'
+              }}>
+                🎊 Chúc Mừng Năm Mới! 🎊
+              </h2>
+              <p className="text-xl md:text-2xl text-yellow-100 mb-8 font-semibold">
+                Tết Bính Ngọ 2026 đã đến! 🐴✨
+              </p>
+              
+              <div className="flex flex-col gap-4">
+                <button
+                  onClick={() => {
+                    setShowCelebrationModal(false);
+                    window.location.href = 'https://nguyentrungnghia1802.github.io/Firework/';
+                  }}
+                  className="bg-yellow-400 hover:bg-yellow-300 text-red-800 font-bold text-xl md:text-2xl px-8 py-4 rounded-full shadow-lg transform transition-all hover:scale-105 active:scale-95"
+                >
+                  🎆 Ngắm Pháo Hoa Nào!
+                </button>
+                
+                <button
+                  onClick={() => setShowCelebrationModal(false)}
+                  className="bg-white/20 hover:bg-white/30 text-white font-semibold text-lg px-6 py-3 rounded-full backdrop-blur-sm transition-all"
+                >
+                  Đóng
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
