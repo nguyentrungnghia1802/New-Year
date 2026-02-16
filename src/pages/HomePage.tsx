@@ -62,8 +62,8 @@ const HomePage: React.FC = () => {
 
       {/* Countdown Header */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
-        <div className="mb-6 text-lg md:text-3xl font-bold text-white bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 rounded-xl px-4 py-2 md:px-6 md:py-3 shadow-lg tet-gradient" style={{textShadow:'0 2px 8px #D32F2F, 0 0 12px #FFD700', background: 'rgba(255, 140, 0, 0.55)'}}>
-          Count down và đón giao thừa cùng mình nhé
+        <div className="mb-6 text-lg md:text-3xl font-bold text-center text-yellow-300 bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 rounded-xl px-4 py-2 md:px-6 md:py-3 shadow-lg tet-gradient" style={{textShadow:'0 3px 10px #D32F2F, 0 0 20px #FFD700, 0 0 30px rgba(255, 215, 0, 0.8)', background: 'rgba(220, 38, 38, 0.7)'}}>
+          Count down và đón giao thừa cùng mình nhé 😃
         </div>
 
         {/* Animated Horses - slow, less, emoji icon */}
