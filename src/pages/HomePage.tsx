@@ -6,11 +6,14 @@ import { useAudioManager } from '../contexts/AudioManager';
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [hasPlayedBell, setHasPlayedBell] = useState(false);
   const { muted, toggleMute } = useAudioManager();
 
   // Đếm ngược đến Tết âm lịch 2026 (Bính Ngọ) - 17/02/2026
+  // TEST: 17:15 hôm nay
   useEffect(() => {
-    const targetDate = new Date('2026-02-17T00:00:00').getTime();
+    const targetDate = new Date('2026-02-16T17:15:00').getTime();
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
@@ -21,12 +24,37 @@ const HomePage: React.FC = () => {
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),
         });
+        setIsUnlocked(false);
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setIsUnlocked(true);
       }
     };
     updateCountdown();
     const interval = setInterval(updateCountdown, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  // Phát âm thanh chuông khi unlock
+  useEffect(() => {
+    if (isUnlocked && !hasPlayedBell) {
+      const bell = new Audio(`${import.meta.env.BASE_URL}audio/ting-ting.mp3`);
+      bell.volume = 0.7;
+      let playCount = 0;
+      
+      const playBell = () => {
+        if (playCount < 3) {
+          bell.currentTime = 0;
+          bell.play().catch(err => console.log('Bell play failed:', err));
+          playCount++;
+          setTimeout(playBell, 1000); // Lặp sau 1 giây
+        }
+      };
+      
+      playBell();
+      setHasPlayedBell(true);
+    }
+  }, [isUnlocked, hasPlayedBell]);
 
   const handleNavigate = (path: string) => {
     navigate(path);
@@ -106,24 +134,63 @@ const HomePage: React.FC = () => {
 
         {/* Navigation Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
-          <button
-            onClick={() => window.location.href = 'https://nguyentrungnghia1802.github.io/Firework/'}
-            className="group relative bg-gradient-to-r from-red-500 to-pink-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-opacity-60"
-            style={{background: 'rgba(255, 0, 80, 0.6)'}}
-          >
-            <span className="relative z-10">🎆 Pháo Hoa</span>
-            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity" />
-          </button>
+          {/* Pháo Hoa Button */}
+          <div className="relative">
+            <button
+              onClick={() => window.location.href = 'https://nguyentrungnghia1802.github.io/Firework/'}
+              disabled={!isUnlocked}
+              className={`group relative w-full bg-gradient-to-r from-red-500 to-pink-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl transition-all duration-300 bg-opacity-60 ${
+                isUnlocked ? 'hover:shadow-2xl hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+              }`}
+              style={{background: 'rgba(255, 0, 80, 0.6)'}}
+            >
+              <span className="relative z-10">🎆 Pháo Hoa</span>
+              {isUnlocked && <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity" />}
+            </button>
+            
+            {/* Locked Overlay */}
+            {!isUnlocked && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-sm rounded-2xl pointer-events-none z-20">
+                <div className="text-yellow-300 font-bold text-sm md:text-base mb-2">🔒 Mở sau:</div>
+                <div className="flex gap-1 md:gap-2 text-white text-xs md:text-sm">
+                  <span className="bg-red-600/80 px-2 py-1 rounded">{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="bg-red-600/80 px-2 py-1 rounded">{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="bg-red-600/80 px-2 py-1 rounded">{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="bg-red-600/80 px-2 py-1 rounded">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+                </div>
+              </div>
+            )}
+          </div>
 
-          <button
-            onClick={() => handleNavigate('/lixi')}
-            className="group relative bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-opacity-60"
-            style={{background: 'rgba(255, 180, 0, 0.6)'}}
-          >
-            <span className="relative z-10">🧧 Bốc Lì Xì</span>
-            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity" />
-          </button>
+          {/* Bốc Lì Xì Button */}
+          <div className="relative">
+            <button
+              onClick={() => handleNavigate('/lixi')}
+              disabled={!isUnlocked}
+              className={`group relative w-full bg-gradient-to-r from-yellow-500 to-orange-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl transition-all duration-300 bg-opacity-60 ${
+                isUnlocked ? 'hover:shadow-2xl hover:scale-105 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+              }`}
+              style={{background: 'rgba(255, 180, 0, 0.6)'}}
+            >
+              <span className="relative z-10">🧧 Bốc Lì Xì</span>
+              {isUnlocked && <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity" />}
+            </button>
+            
+            {/* Locked Overlay */}
+            {!isUnlocked && (
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/70 backdrop-blur-sm rounded-2xl pointer-events-none z-20">
+                <div className="text-yellow-300 font-bold text-sm md:text-base mb-2">🔒 Mở sau:</div>
+                <div className="flex gap-1 md:gap-2 text-white text-xs md:text-sm">
+                  <span className="bg-yellow-600/80 px-2 py-1 rounded">{String(timeLeft.days).padStart(2, '0')}d</span>
+                  <span className="bg-yellow-600/80 px-2 py-1 rounded">{String(timeLeft.hours).padStart(2, '0')}h</span>
+                  <span className="bg-yellow-600/80 px-2 py-1 rounded">{String(timeLeft.minutes).padStart(2, '0')}m</span>
+                  <span className="bg-yellow-600/80 px-2 py-1 rounded">{String(timeLeft.seconds).padStart(2, '0')}s</span>
+                </div>
+              </div>
+            )}
+          </div>
 
+          {/* Giao Quẻ Button - Always unlocked */}
           <button
             onClick={() => handleNavigate('/fortune')}
             className="group relative bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-opacity-60"
