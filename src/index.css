@@ -31,7 +31,9 @@
 
   body {
     font-family: 'Quicksand', sans-serif;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-font-smoothing: antialiased;
+    /* stylelint-disable-next-line property-no-vendor-prefix */
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
