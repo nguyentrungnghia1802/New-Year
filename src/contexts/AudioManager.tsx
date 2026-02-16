@@ -113,6 +113,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAudioManager = () => {
   const context = useContext(AudioContext);
   if (context === undefined) {
