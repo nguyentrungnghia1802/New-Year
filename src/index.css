@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @keyframes horse-run {
   0% { transform: translateX(-100px) scaleX(1); }
   50% { transform: translateX(100vw) scaleX(1); }
@@ -15,11 +21,6 @@
 .blossom {
   animation: blossom-fall 4s linear infinite;
 }
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 @layer base {
   * {
