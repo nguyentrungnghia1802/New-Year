@@ -6,18 +6,17 @@ interface LixiEnvelope {
   id: number;
   amount: number;
   message: string;
-  moneyImage: string;
 }
 
 const LIXI_DATA = [
-  { amount: 2000, message: 'Song hỷ lâm môn — May mắn nhân đôi!', moneyImage: '/images/money/2000.png' },
-  { amount: 5000, message: 'Phúc lộc dồi dào — Tài lộc tràn trề!', moneyImage: '/images/money/5000.png' },
-  { amount: 10000, message: 'Vạn sự như ý — Điều gì cũng thành!', moneyImage: '/images/money/10000.png' },
-  { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!', moneyImage: '/images/money/20000.png' },
-  { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!', moneyImage: '/images/money/50000.png' },
-  { amount: 100000, message: 'Nghìn vàng mười bạc — Giàu sang phú quý!', moneyImage: '/images/money/100000.png' },
-  { amount: 200000, message: 'Tài vận hanh thông — Của cải luôn đầy!', moneyImage: '/images/money/200000.png' },
-  { amount: 500000, message: 'Đại phát đại lợi — Thành công rực rỡ!', moneyImage: '/images/money/500000.png' },
+  { amount: 2000, message: 'Song hỷ lâm môn — May mắn nhân đôi!' },
+  { amount: 5000, message: 'Phúc lộc dồi dào — Tài lộc tràn trề!' },
+  { amount: 10000, message: 'Vạn sự như ý — Điều gì cũng thành!' },
+  { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!' },
+  { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!' },
+  { amount: 100000, message: 'Nghìn vàng mười bạc — Giàu sang phú quý!' },
+  { amount: 200000, message: 'Tài vận hanh thông — Của cải luôn đầy!' },
+  { amount: 500000, message: 'Đại phát đại lợi — Thành công rực rỡ!' },
 ];
 
 const LixiPage: React.FC = () => {
@@ -117,7 +116,7 @@ const LixiPage: React.FC = () => {
         {/* Result Display */}
         {selectedEnvelope && (
           <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 animate-fade-in">
-            <div className="bg-gradient-to-br from-yellow-900 to-red-900 rounded-3xl p-6 md:p-12 max-w-2xl w-full shadow-2xl border-4 border-yellow-400 animate-scale-in">
+            <div className="relative bg-gradient-to-br from-yellow-900 to-red-900 rounded-3xl p-6 md:p-12 max-w-2xl w-full shadow-2xl border-4 border-yellow-400 animate-scale-in">
               {/* Close button */}
               <button
                 onClick={handleTryAgain}
@@ -138,20 +137,10 @@ const LixiPage: React.FC = () => {
 
               {/* Money Image */}
               <div className="mb-6 bg-white rounded-xl p-4 shadow-2xl">
-                <img
-                  src={selectedEnvelope.moneyImage}
-                  alt={`${selectedEnvelope.amount}đ`}
-                  className="w-full h-auto rounded"
-                  onError={(e) => {
-                    // Fallback if image doesn't exist
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
-                {/* Fallback display if image doesn't load */}
+                {/* Money note placeholder or image */}
                 <div className="text-center py-8">
-                  <div className="text-6xl md:text-8xl mb-4">💵</div>
-                  <div className="text-4xl md:text-6xl font-bold" style={{color: '#D32F2F'}}>
+                  <div className="text-5xl md:text-7xl mb-4">💵</div>
+                  <div className="text-4xl md:text-6xl font-bold mb-2" style={{color: '#D32F2F'}}>
                     {formatCurrency(selectedEnvelope.amount)}
                   </div>
                 </div>
@@ -159,8 +148,8 @@ const LixiPage: React.FC = () => {
 
               {/* Blessing Message */}
               <div className="text-center mb-8">
-                <p className="text-xl md:text-2xl font-bold" style={{color: '#FFD700'}}>
-                  {selectedEnvelope.message}
+                <p className="text-lg md:text-2xl font-bold italic" style={{color: '#FFD700'}}>
+                  "{selectedEnvelope.message}"
                 </p>
               </div>
 
