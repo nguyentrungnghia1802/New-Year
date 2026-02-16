@@ -15,7 +15,7 @@ Website đã được xây dựng thành công với đầy đủ các tính nă
 1. ✅ **Trang Chủ** (/) - Đồng hồ đếm ngược, hoa tương tác, popup lời chúc
 2. ✅ **Trang Pháo Hoa** (/fireworks) - Canvas animation, chuyển năm 2025→2026
 3. ✅ **Trang Bốc Lì Xì** (/lixi) - 8 bao lì xì, xáo trộn ngẫu nhiên
-4. ✅ **Trang Giao Quẻ** (/fortune) - Form nhập liệu, hiển thị quẻ tích cực
+4. ✅ **Trang Gieo Quẻ** (/fortune) - Form nhập liệu, hiển thị quẻ tích cực
 
 ## 🎵 Bước Tiếp Theo: Thêm File Âm Thanh
 

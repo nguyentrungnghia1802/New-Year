@@ -25,9 +25,9 @@ const FORTUNES: FortuneResult[] = [
   {
     title: '✨ THƯỢNG CÁT - QUÝ NHÂN PHÁT ĐẠT',
     overview: 'Quẻ Quý Nhân Phát Đạt, cát tinh cao chiếu. Trong năm này, quý nhân tứ phương tề tựu, giúp đỡ đắc lực. Mọi việc làm đều có người hỗ trợ, công danh sự nghiệp thuận lợi hanh thông. Phúc lộc song toàn, gia đạo an khang.',
-    career: 'Thiên Quan tứ cát, Quan Lộc cung vượng. Sự nghiệp phát triển nhờ quý nhân nâng đỡ. Tháng 4 và tháng 10 âm lịch có cơ hội thăng tiến lớn. Nên gặp gỡ đối tác vào buổi sáng, kết giao với người mặt phương, má đầy.',
+    career: 'Thiên Quan tứ cát, Quan Lộc cung vượng. Sự nghiệp phát triển nhờ quý nhân nâng đỡ. Tháng 4 và tháng 10 âm lịch có cơ hội thăng tiến lớn. Nên gặp gỡ đối tác vào buổi sáng, kết Gieo với người mặt phương, má đầy.',
     wealth: 'Tài Bạch tinh chiếu, Lộc Tồn vào mệnh. Nguồn tài từ nghề nghiệp chính dồi dào, thêm có tài lộc phụ. Nên để ý cơ hội làm ăn với người tuổi Thìn, Thân. Màu xanh lam và trắng bạc mang lại may mắn về tài chính.',
-    love: 'Hồng Loan cung sáng, Thiên Hỷ đắc vị. Tình duyên tốt đẹp, được gia đình ủng hộ. Cần chú ý giao tiếp, lắng nghe để giữ gìn hạnh phúc. Vợ chồng hòa thuận, con cái ngoan ngoãn, gia đình êm ấm.',
+    love: 'Hồng Loan cung sáng, Thiên Hỷ đắc vị. Tình duyên tốt đẹp, được gia đình ủng hộ. Cần chú ý Gieo tiếp, lắng nghe để giữ gìn hạnh phúc. Vợ chồng hòa thuận, con cái ngoan ngoãn, gia đình êm ấm.',
     health: 'Thọ Nguyên cung tốt, Phúc Tinh chiếu mệnh. Sức khỏe ổn định, tinh thần phấn chấn. Nên ăn nhiều rau xanh, trái cây. Đi dạo về hướng Đông vào buổi sáng sẽ tăng cường vận khí và sức khỏe.',
     image: ''
   },

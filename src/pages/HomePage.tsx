@@ -18,7 +18,7 @@ const HomePage: React.FC = () => {
   // Đếm ngược đến Tết âm lịch 2026 (Bính Ngọ) - 17/02/2026
   // TEST: 17:15 hôm nay
   useEffect(() => {
-    const targetDate = new Date('2026-02-16T19:43:00').getTime();
+    const targetDate = new Date('2026-02-16T19:46:00').getTime();
     const updateCountdown = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
@@ -115,7 +115,7 @@ const HomePage: React.FC = () => {
       {/* Countdown Header */}
       <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-8">
         <div className="mb-6 text-lg md:text-3xl font-bold text-center text-yellow-300 bg-gradient-to-r from-red-600 via-yellow-400 to-red-600 rounded-xl px-4 py-2 md:px-6 md:py-3 shadow-lg tet-gradient" style={{textShadow:'0 3px 10px #D32F2F, 0 0 20px #FFD700, 0 0 30px rgba(255, 215, 0, 0.8)', background: 'rgba(220, 38, 38, 0.7)'}}>
-          Count down và đón giao thừa cùng mình nhé 😃
+          Count down và đón Gieo thừa cùng mình nhé 😃
         </div>
 
         {/* Animated Horses - slow, less, emoji icon */}
@@ -214,13 +214,13 @@ const HomePage: React.FC = () => {
             )}
           </div>
 
-          {/* Giao Quẻ Button - Always unlocked */}
+          {/* Gieo Quẻ Button - Always unlocked */}
           <button
             onClick={() => handleNavigate('/fortune')}
             className="group relative bg-gradient-to-r from-purple-500 to-indigo-500 text-white py-4 md:py-6 px-6 md:px-8 rounded-2xl font-bold text-lg md:text-2xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 bg-opacity-60"
             style={{background: 'rgba(120, 80, 255, 0.6)'}}
           >
-            <span className="relative z-10">🔮 Giao Quẻ</span>
+            <span className="relative z-10">🔮 Gieo Quẻ</span>
             <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 rounded-2xl transition-opacity" />
           </button>
         </div>

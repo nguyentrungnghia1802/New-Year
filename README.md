@@ -1,6 +1,6 @@
 # Website Tết 2027 🎊
 
-Website Tết đầy đủ tính năng với 4 trang chính: Trang chủ, Pháo hoa, Bốc lì xì, và Giao quẻ.
+Website Tết đầy đủ tính năng với 4 trang chính: Trang chủ, Pháo hoa, Bốc lì xì, và Gieo quẻ.
 
 ## 🎯 Công nghệ sử dụng
 
@@ -110,11 +110,11 @@ npm run build
 - 💰 Hiển thị số tiền và lời chúc
 - 🔄 Xáo trộn lại sau mỗi lần bốc
 
-### Trang Giao Quẻ (/fortune)
+### Trang Gieo Quẻ (/fortune)
 - 📅 Form nhập ngày sinh và giới tính
 - 🔮 Thuật toán tạo quẻ dựa trên ngày sinh
 - ✨ Hiển thị quẻ với 5 khía cạnh
-- 🎨 Giao diện đẹp mắt, dễ đọc
+- 🎨 Gieo diện đẹp mắt, dễ đọc
 
 ## 🎨 Customization
 
