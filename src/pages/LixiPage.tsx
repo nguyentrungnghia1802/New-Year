@@ -72,6 +72,16 @@ const LixiPage: React.FC = () => {
       {/* Background decoration with traditional bridge/pagoda illustration */}
       <div className="absolute inset-0 opacity-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/background/traditional-bg.png)'}}></div>
       
+      {/* Home Button - Top Left */}
+      {!selectedEnvelope && (
+        <button
+          onClick={() => navigate('/')}
+          className="fixed top-4 left-4 z-50 bg-white/80 backdrop-blur-sm text-gray-800 px-6 py-3 rounded-full font-bold text-base hover:bg-white transition-all duration-300 shadow-lg border-2 border-gray-300 hover:scale-105"
+        >
+          🏠 VỀ TRANG CHỦ
+        </button>
+      )}
+      
       {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}
@@ -96,7 +106,7 @@ const LixiPage: React.FC = () => {
 
         {/* Envelopes Grid */}
         {!selectedEnvelope && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12 max-w-6xl w-full">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 mb-12 max-w-4xl w-full">
             {envelopes.map((envelope, index) => (
               <button
                 key={envelope.id}
@@ -183,15 +193,6 @@ const LixiPage: React.FC = () => {
           </div>
         )}
 
-        {/* Home Button */}
-        {!selectedEnvelope && (
-          <button
-            onClick={() => navigate('/')}
-            className="mt-8 bg-white/80 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 shadow-lg border-2 border-gray-300"
-          >
-            🏠 VỀ TRANG CHỦ
-          </button>
-        )}
       </div>
 
       <style>{`
