@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useRef, useState, useEffect } from 'react';
+import React, { createContext, useContext, useRef, useState, useEffect, useMemo, useCallback } from 'react';
 
 interface AudioContextType {
   muted: boolean;
@@ -27,20 +27,24 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
   }, []);
 
-  const toggleMute = () => {
-    if (audioRef.current) {
-      if (muted) {
-        audioRef.current.play().catch(err => console.log('Audio play failed:', err));
-        audioRef.current.muted = false;
-      } else {
-        audioRef.current.muted = true;
+  const toggleMute = useCallback(() => {
+    setMuted((prevMuted) => {
+      if (audioRef.current) {
+        if (prevMuted) {
+          audioRef.current.play().catch(err => console.log('Audio play failed:', err));
+          audioRef.current.muted = false;
+        } else {
+          audioRef.current.muted = true;
+        }
       }
-      setMuted(!muted);
-    }
-  };
+      return !prevMuted;
+    });
+  }, []);
+
+  const value = useMemo(() => ({ muted, toggleMute }), [muted, toggleMute]);
 
   return (
-    <AudioContext.Provider value={{ muted, toggleMute }}>
+    <AudioContext.Provider value={value}>
       {children}
     </AudioContext.Provider>
   );
