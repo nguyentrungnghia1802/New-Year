@@ -17,13 +17,18 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       audioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/new-year.mp3`);
       audioRef.current.loop = true;
       audioRef.current.volume = 0.5;
-      // Auto-play when component mounts with user interaction fallback
+      
+      // Try to auto-play
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
-        playPromise.catch(err => {
-          console.log('Audio autoplay prevented by browser:', err);
-          // Browser blocked autoplay, will play when user clicks toggle
-        });
+        playPromise
+          .then(() => {
+            setMuted(false);
+          })
+          .catch(err => {
+            console.log('Audio autoplay prevented by browser:', err);
+            setMuted(true); // Set muted to true since it's not playing
+          });
       }
     }
 
@@ -36,18 +41,20 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   }, []);
 
   const toggleMute = useCallback(() => {
-    setMuted((prevMuted) => {
-      if (audioRef.current) {
-        if (prevMuted) {
-          // Was muted, now unmute and play
-          audioRef.current.play().catch(err => console.log('Audio play failed:', err));
-        } else {
-          // Was playing, now pause
-          audioRef.current.pause();
-        }
-      }
-      return !prevMuted;
-    });
+    if (!audioRef.current) return;
+    
+    if (audioRef.current.paused) {
+      // Audio is paused, play it
+      audioRef.current.play()
+        .then(() => {
+          setMuted(false);
+        })
+        .catch(err => console.log('Audio play failed:', err));
+    } else {
+      // Audio is playing, pause it
+      audioRef.current.pause();
+      setMuted(true);
+    }
   }, []);
 
   const value = useMemo(() => ({ muted, toggleMute }), [muted, toggleMute]);
