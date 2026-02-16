@@ -240,13 +240,13 @@ const FortunePage: React.FC = () => {
                 🙏 Cầu Quẻ Đầu Xuân 🙏
               </button>
 
-              <button
+              {/* <button
                 type="button"
                 onClick={() => navigate('/')}
                 className="w-full bg-white/20 backdrop-blur-sm text-white py-3 px-8 rounded-xl font-bold text-lg hover:bg-white/30 transition-all duration-300"
               >
                 🏠 Về Trang Chủ
-              </button>
+              </button> */}
             </form>
           </div>
         ) : (
@@ -299,12 +299,12 @@ const FortunePage: React.FC = () => {
                 >
                   🔄 Cầu Quẻ Lại
                 </button>
-                <button
+                {/* <button
                   onClick={() => navigate('/')}
                   className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-400"
                 >
                   🏠 Về Trang Chủ
-                </button>
+                </button> */}
               </div>
               
               {/* Fortune Disclaimer */}

@@ -9,22 +9,20 @@ interface LixiEnvelope {
 }
 
 const LIXI_DATA = [
-  { amount: 2000, message: 'Song hỷ lâm môn — May mắn nhân đôi!' },
+  { amount: 500, message: 'Lộc nhỏ cũng là lộc — May mắn luôn bên bạn!' },
   { amount: 5000, message: 'Phúc lộc dồi dào — Tài lộc tràn trề!' },
   { amount: 10000, message: 'Vạn sự như ý — Điều gì cũng thành!' },
   { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!' },
   { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!' },
-  { amount: 100000, message: 'Nghìn vàng mười bạc — Giàu sang phú quý!' },
 ];
 
 const getMoneyImagePath = (amount: number): string => {
   const imageMap: Record<number, string> = {
-    2000: '2.000.jpeg',
+    500: '500.jpg',
     5000: '5.000.jpg',
     10000: '10.000.jpg',
     20000: '20.000.jpg',
     50000: '50.000.jpg',
-    100000: '100.000.jpg',
   };
   return `${import.meta.env.BASE_URL}images/lixi/${imageMap[amount] || '10.000.jpg'}`;
 };
