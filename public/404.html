@@ -7,7 +7,11 @@
   <script>
     // GitHub Pages SPA redirect trick
     // Save the current path and redirect to index.html
-    sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+    try {
+      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+    } catch (e) {
+      // Ignore storage errors
+    }
     location.replace(location.origin + location.pathname.split('/').slice(0, -1).join('/') + '/');
   </script>
 </head>
