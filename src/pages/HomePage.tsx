@@ -7,7 +7,10 @@ const HomePage: React.FC = () => {
   const navigate = useNavigate();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [isUnlocked, setIsUnlocked] = useState(false);
-  const [hasPlayedBell, setHasPlayedBell] = useState(false);
+  const [hasPlayedBell, setHasPlayedBell] = useState(() => {
+    // Check localStorage to see if bell has already been played
+    return localStorage.getItem('tet2026_bell_played') === 'true';
+  });
   const [showBellAnimation, setShowBellAnimation] = useState(false);
   const [showCelebrationModal, setShowCelebrationModal] = useState(false);
   const { muted, toggleMute, pauseBackgroundMusic, resumeBackgroundMusic } = useAudioManager();
@@ -40,7 +43,9 @@ const HomePage: React.FC = () => {
   // Phát âm thanh chuông khi unlock
   useEffect(() => {
     if (isUnlocked && !hasPlayedBell) {
+      // Mark as played immediately and save to localStorage
       setHasPlayedBell(true);
+      localStorage.setItem('tet2026_bell_played', 'true');
       
       // Pause background music
       pauseBackgroundMusic();
