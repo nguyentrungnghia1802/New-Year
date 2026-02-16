@@ -39,7 +39,7 @@ const HomePage: React.FC = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url(${window.innerWidth < 768 ? '/images/background/main-mobile.png' : '/images/background/main.png'})`,
+          backgroundImage: `url(${window.innerWidth < 768 ? import.meta.env.BASE_URL + 'images/background/main-mobile.png' : import.meta.env.BASE_URL + 'images/background/main.png'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           width: '100%',

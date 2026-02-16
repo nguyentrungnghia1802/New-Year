@@ -14,7 +14,7 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     // Create audio element if it doesn't exist
     if (!audioRef.current) {
-      audioRef.current = new Audio('/audio/new-year.mp3');
+      audioRef.current = new Audio(`${import.meta.env.BASE_URL}audio/new-year.mp3`);
       audioRef.current.loop = true;
       audioRef.current.muted = false;
       // Auto-play when component mounts
