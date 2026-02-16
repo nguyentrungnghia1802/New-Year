@@ -15,9 +15,19 @@ const LIXI_DATA = [
   { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!' },
   { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!' },
   { amount: 100000, message: 'Nghìn vàng mười bạc — Giàu sang phú quý!' },
-  { amount: 200000, message: 'Tài vận hanh thông — Của cải luôn đầy!' },
-  { amount: 500000, message: 'Đại phát đại lợi — Thành công rực rỡ!' },
 ];
+
+const getMoneyImagePath = (amount: number): string => {
+  const imageMap: Record<number, string> = {
+    2000: '2.000.jpeg',
+    5000: '5.000.jpg',
+    10000: '10.000.jpg',
+    20000: '20.000.jpg',
+    50000: '50.000.jpg',
+    100000: '100.000.jpg',
+  };
+  return `/images/lixi/${imageMap[amount] || '10.000.jpg'}`;
+};
 
 const LixiPage: React.FC = () => {
   const navigate = useNavigate();
@@ -137,10 +147,17 @@ const LixiPage: React.FC = () => {
 
               {/* Money Image */}
               <div className="mb-6 bg-white rounded-xl p-4 shadow-2xl">
-                {/* Money note placeholder or image */}
-                <div className="text-center py-8">
-                  <div className="text-5xl md:text-7xl mb-4">💵</div>
-                  <div className="text-4xl md:text-6xl font-bold mb-2" style={{color: '#D32F2F'}}>
+                <div className="text-center">
+                  <img
+                    src={getMoneyImagePath(selectedEnvelope.amount)}
+                    alt={`${formatCurrency(selectedEnvelope.amount)}`}
+                    className="w-full max-w-md mx-auto rounded-lg shadow-md mb-4"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                  <div className="text-2xl md:text-3xl font-bold mt-2" style={{color: '#D32F2F'}}>
                     {formatCurrency(selectedEnvelope.amount)}
                   </div>
                 </div>

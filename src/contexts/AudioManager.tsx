@@ -8,7 +8,7 @@ interface AudioContextType {
 const AudioContext = createContext<AudioContextType | undefined>(undefined);
 
 export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [muted, setMuted] = useState(true);
+  const [muted, setMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -16,7 +16,9 @@ export const AudioProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     if (!audioRef.current) {
       audioRef.current = new Audio('/audio/new-year.mp3');
       audioRef.current.loop = true;
-      audioRef.current.muted = true;
+      audioRef.current.muted = false;
+      // Auto-play when component mounts
+      audioRef.current.play().catch(err => console.log('Audio autoplay failed:', err));
     }
 
     return () => {

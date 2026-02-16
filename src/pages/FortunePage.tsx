@@ -14,52 +14,58 @@ interface FortuneResult {
 
 const FORTUNES: FortuneResult[] = [
   {
-    title: '🌟 ĐẠI CÁT - VẠN SỰ HANH THÔNG',
-    overview: 'Năm mới này là năm của sự may mắn và thịnh vượng. Mọi điều bạn mong muốn đều sẽ được thực hiện một cách suôn sẻ.',
-    career: 'Sự nghiệp thăng tiến vượt bậc, cơ hội thăng chức hoặc khởi nghiệp rất thuận lợi. Quý nhân phù trợ xuất hiện đúng lúc.',
-    wealth: 'Tài vận hanh thông, nguồn thu nhập tăng lên đáng kể. Đầu tư có lãi, kinh doanh phát đạt.',
-    love: 'Tình duyên viên mãn, hạnh phúc tràn đầy. Người độc thân gặp được nửa kia, người đã có đôi thêm gắn bó.',
-    health: 'Sức khỏe dồi dào, tinh thần phấn chấn. Năng lượng tích cực tràn đầy.',
+    title: '🌟 ĐẠI CÁT - LONG PHƯỢNG CHẦU NGUYÊN',
+    overview: 'Quẻ Long Phượng Chầu Nguyên báo hiệu Thiên thời, Địa lợi, Nhân hòa đều hội tụ đầy đủ. Vận số đại cát, vạn sự hanh thông. Đây là thời khắc trời đất ban ơn, tổ tiên phù hộ. Quý nhân xuất hiện, công danh phát đạt, gia đạo hưng thịnh.',
+    career: 'Sao Văn Xương chiếu mệnh, Thiên Quan tứ đại. Công danh thăng tiến như rồng bay phượng múa. Tháng 3 và tháng 7 âm lịch sẽ có tin vui về thăng chức hoặc gia tăng quyền lực. Nên mở rộng kinh doanh, khởi sự việc lớn vào hướng Đông Nam.',
+    wealth: 'Tài tinh đắc vị, Thiên Tài chiếu mệnh. Tài vận hanh thông tứ phương, của cải tăng sinh bội phần. Đầu tư vào tháng 2, 5, 8 âm lịch sẽ sinh lợi lớn. Hợp màu vàng kim, phương Tây Nam để thu hút tài lộc.',
+    love: 'Hồng Loan tinh động, Thiên Hỷ lâm môn. Người độc thân gặp được chánh duyên trong năm nay, đặc biệt vào mùa xuân và mùa thu. Người đã có đôi tình duyên viên mãn, hạnh phúc sung mãn. Con cái hiếu thảo, gia đạo hưng thịnh.',
+    health: 'Phúc Đức cung tốt, Thọ Tinh vượng tướng. Khí huyết lưu thông, ngũ tạng lục phủ điều hòa. Nên uống nước có vị ngọt nhẹ, ăn thực phẩm màu đỏ và vàng để tăng cường khí vận. Tập thể dục lúc mặt trời mọc để đón khí dương.',
+    image: ''
   },
   {
-    title: '✨ THƯỢNG CÁT - PHÚC LỘC SONG TOÀN',
-    overview: 'Quẻ báo hiệu một năm đầy may mắn và hạnh phúc. Công việc thuận lợi, gia đạo an khang.',
-    career: 'Công việc ổn định và phát triển tốt. Nỗ lực được ghi nhận, danh tiếng được nâng cao.',
-    wealth: 'Tài chính dồi dào, của cải tăng thêm. Có tiền tích lũy, cuộc sống sung túc.',
-    love: 'Tình cảm gia đình hòa thuận, quan hệ xã hội tốt đẹp. Được nhiều người yêu mến.',
-    health: 'Khỏe mạnh, vui vẻ. Tinh thần lạc quan, cuộc sống cân bằng.',
+    title: '✨ THƯỢNG CÁT - QUÝ NHÂN PHÁT ĐẠT',
+    overview: 'Quẻ Quý Nhân Phát Đạt, cát tinh cao chiếu. Trong năm này, quý nhân tứ phương tề tựu, giúp đỡ đắc lực. Mọi việc làm đều có người hỗ trợ, công danh sự nghiệp thuận lợi hanh thông. Phúc lộc song toàn, gia đạo an khang.',
+    career: 'Thiên Quan tứ cát, Quan Lộc cung vượng. Sự nghiệp phát triển nhờ quý nhân nâng đỡ. Tháng 4 và tháng 10 âm lịch có cơ hội thăng tiến lớn. Nên gặp gỡ đối tác vào buổi sáng, kết giao với người mặt phương, má đầy.',
+    wealth: 'Tài Bạch tinh chiếu, Lộc Tồn vào mệnh. Nguồn tài từ nghề nghiệp chính dồi dào, thêm có tài lộc phụ. Nên để ý cơ hội làm ăn với người tuổi Thìn, Thân. Màu xanh lam và trắng bạc mang lại may mắn về tài chính.',
+    love: 'Hồng Loan cung sáng, Thiên Hỷ đắc vị. Tình duyên tốt đẹp, được gia đình ủng hộ. Cần chú ý giao tiếp, lắng nghe để giữ gìn hạnh phúc. Vợ chồng hòa thuận, con cái ngoan ngoãn, gia đình êm ấm.',
+    health: 'Thọ Nguyên cung tốt, Phúc Tinh chiếu mệnh. Sức khỏe ổn định, tinh thần phấn chấn. Nên ăn nhiều rau xanh, trái cây. Đi dạo về hướng Đông vào buổi sáng sẽ tăng cường vận khí và sức khỏe.',
+    image: ''
   },
   {
-    title: '🎋 TRUNG CÁT - VẠN SỰ NHƯ Ý',
-    overview: 'Năm mới mang đến nhiều điều tốt lành. Dù có thử thách nhỏ nhưng đều vượt qua được.',
-    career: 'Tiến bộ từng bước, đạt được mục tiêu đề ra. Kinh nghiệm tích lũy ngày càng nhiều.',
-    wealth: 'Thu nhập ổn định, đủ đầy. Biết tiết kiệm và đầu tư khôn ngoan.',
-    love: 'Tình cảm êm đềm, hạnh phúc bình yên. Gia đình là chỗ dựa vững chắc.',
-    health: 'Sức khỏe tốt, cần chú ý nghỉ ngơi hợp lý. Tập thể dục đều đặn.',
+    title: '🎋 TRUNG CÁT - BẢN MỆNH AN THÁI',
+    overview: 'Quẻ Bản Mệnh An Thái, trung bình đại cát. Năm nay vận khí ổn định, không có biến động lớn. Làm việc gì cũng nên từ từ, không vội vàng. Giữ được hiện tại thì tương lai càng tốt đẹp. Bình an là phúc, đơn giản là quý.',
+    career: 'Quan Lộc cung bình hòa, tiến bộ đều đặn. Không nên thay đổi lớn, hãy vun đắp từng bước nhỏ. Tháng 6 và tháng 9 âm lịch là thời điểm tốt để học hỏi kỹ năng mới. Nên làm việc với những người tính tình điềm đạm.',
+    wealth: 'Tài Bạch bình ổn, Lộc Tồn vào cung. Thu nhập đều đặn, không thiếu thốn. Nên tiết kiệm, tích lũy cho tương lai. Đầu tư an toàn như vàng, đất đai sẽ mang lại lợi nhuận ổn định. Tránh đầu cơ, liều lĩnh.',
+    love: 'Phu Thê cung hòa hợp, tình cảm bền chặt. Không có sóng gió lớn, cùng nhau vun đắp hạnh phúc đơn giản. Nên dành thời gian cho gia đình, tổ chức các buổi họp mặt ấm cúng.',
+    health: 'Thân Cung an ổn, Bệnh Ách không xâm. Sức khỏe tốt, cần duy trì lối sống lành mạnh. Ăn uống điều độ, ngủ nghỉ đúng giờ. Nên uống trà xanh, ăn ngũ cốc để bồi bổ khí huyết.',
+    image: ''
   },
   {
-    title: '🌸 TIỂU CÁT - AN KHANG THỊNH VƯỢNG',
-    overview: 'Quẻ báo hiệu sự bình an và hạnh phúc. Cuộc sống yên ổn, mọi việc suôn sẻ.',
-    career: 'Công việc bình ổn, không có biến động lớn. Phát triển đều đặn theo đúng kế hoạch.',
-    wealth: 'Tài chính ổn định, không thiếu thốn. Chi tiêu hợp lý, có dư dả.',
-    love: 'Tình cảm bền vững, hiểu nhau và thương yêu. Gia đình ấm áp.',
-    health: 'Khỏe mạnh, không bệnh tật. Tâm trạng thoải mái, vui vẻ.',
+    title: '🌸 TIỂU CÁT - THUẬN BUỒM XUÔI GIÓ',
+    overview: 'Quẻ Thuận Buồm Xuôi Gió, tiểu cát phát tài. Năm này vận khí thuận lợi, mọi việc suôn sẻ như ý. Tuy không có sự đột phá lớn nhưng mọi thứ đều êm đẹp, an vui. Gia đạo bình yên, tâm hồn thư thái.',
+    career: 'Quan Lộc cung bình thường, không thăng không giáng. Công việc ổn định, đồng nghiệp hòa thuận. Nên giữ thái độ khiêm tốn, tích lũy kinh nghiệm. Tháng 1 và tháng 11 âm lịch có thể có thay đổi nhỏ, đều là tốt.',
+    wealth: 'Tiểu Tài vào mệnh, Tích Lũy Đức Lợi. Của cải đủ dùng, có thể để dành. Nên làm từ thiện, giúp đỡ người nghèo khó để tích phúc đức. Màu xanh lá và nâu đất mang lại may mắn cho tài vận.',
+    love: 'Phu Thê cung êm đềm, tình nghĩa bền lâu. Hai vợ chồng thấu hiểu, chia sẻ. Gia đình ấm áp, con cái vâng lời. Nên cùng nhau đi chùa, cầu an vào đầu năm để giữ gìn hạnh phúc.',
+    health: 'Phúc Đức cung tốt, không bệnh hoạn. Khỏe mạnh, vui vẻ. Nên tập thái cực, khí công để điều hòa âm dương. Ăn nhiều rau củ quả, hạn chế đồ chiên rán.',
+    image: ''
   },
   {
-    title: '🎊 ĐẠI LỢI - VẬN MAY RƯỚC LỘC',
-    overview: 'Năm của những cơ hội lớn và thành công rực rỡ. Hãy tận dụng mọi cơ hội.',
-    career: 'Bứt phá mạnh mẽ, thành tựu vượt mong đợi. Được tin tưởng và giao trọng trách.',
-    wealth: 'Tài lộc dồi dào, của cải tăng lên nhanh chóng. Đầu tư sinh lời cao.',
-    love: 'Hạnh phúc viên mãn, tình yêu nở rộ. Mối quan hệ sâu sắc và ý nghĩa.',
-    health: 'Tràn đầy sinh lực, sức khỏe tuyệt vời. Tinh thần minh mẫn.',
+    title: '🎊 THƯỢNG THƯỢNG - VẠN SỰ HANH THÔNG',
+    overview: 'Quẻ Vạn Sự Hanh Thông, đại cát đại lợi. Thiên thời địa lợi nhân hòa đều thuận, vạn sự như ý. Đây là năm của sự bứt phá và thành công rực rỡ. Tự tinh chiếu mệnh, phúc tinh cao chiếu. Mở cửa đón tài, nghênh quý đón lộc.',
+    career: 'Thiên Quan đắc tinh, Quan Lộc vượng tướng. Năm nay là năm của sự bứt phá trong sự nghiệp. Cơ hội thăng tiến, khởi nghiệp đều thuận lợi. Tháng 3, 6, 9 âm lịch là thời điểm vàng. Hợp hướng Nam và Đông Nam.',
+    wealth: 'Tài Tinh đắc địa, Tứ Phương Tụ Tài. Tài vận hanh thông, của cải nhập môn từ nhiều nguồn. Kinh doanh phát đạt, đầu tư sinh lời cao. Nên mở rộng quy mô, đầu tư bất động sản. Màu đỏ và vàng kim mang lại đại tài.',
+    love: 'Hồng Loan, Thiên Hỷ song tinh chiếu mệnh. Tình duyên viên mãn, hôn nhân hạnh phúc. Người độc thân sẽ gặp được chánh duyên, kết hôn trong năm. Người đã có đôi thêm gắn bó, sinh thêm quý tử.',
+    health: 'Thọ Tinh vượng tướng, Bệnh Ách không xâm. Sức khỏe dồi dào, tinh thần phấn chấn. Khí huyết lưu thông, ngũ tạng điều hòa. Nên uống sâm, dùng yến để bồi bổ. Tập thể dục buổi sáng sớm.',
+    image: ''
   },
   {
-    title: '🏆 THỊNH VẬN - CÔNG DANH HIỂN HIỂN',
-    overview: 'Quẻ đại cát về công danh và sự nghiệp. Năm nay là thời điểm tỏa sáng của bạn.',
-    career: 'Thăng tiến vượt bậc, vị trí cao hơn, trọng trách lớn hơn. Tài năng được phát huy.',
-    wealth: 'Nguồn thu từ sự nghiệp tăng cao. Của cải phong phú, giàu sang phú quý.',
-    love: 'Được ngưỡng mộ và yêu mến. Tình duyên tốt đẹp, gia đình hòa thuận.',
-    health: 'Sức khỏe dồi dào, tinh thần phấn chấn. Năng lượng tích cực.',
+    title: '🏆 CƯỜNG THỊNH - KIM NGỌC MÃN ĐƯỜNG',
+    overview: 'Quẻ Kim Ngọc Mãn Đường, đại cát vô cương. Đây là quẻ của sự giàu sang phú quý, công danh hiển hách. Năm nay phúc lộc dày dồn, tài vận dồi dào. Tổ tiên phù hộ, thần linh che chở. Mọi điều ước nguyện đều thành.',
+    career: 'Văn Xương, Văn Khúc song chiếu. Công danh thăng tiến vượt bậc, địa vị cao sang. Có thể đạt chức vụ lãnh đạo, được nhiều người kính trọng. Tháng 2, 5, 8, 11 âm lịch là tháng đại cát. Hợp hướng Bắc và Tây Bắc.',
+    wealth: 'Tài Bạch, Thiên Tài tam hợp. Tài vận vượng tướng, kim ngân đầy két. Kinh doanh phát tài phát lộc, đầu tư nghìn vàn sinh lợi. Nên mở rộng sang ngành nghề mới, hợp tác quốc tế. Màu vàng, tím, đỏ mang lại đại phú.',
+    love: 'Phu Thê cung cát tường, Hỷ Khí dồi dào. Vợ chồng cung kính, tình nghĩa vẹn tròn. Gia đình hạnh phúc, con cháu đầy đàn. Nhà cửa tươm tất, của cải đầy kho. Được làng xóm kính trọng.',
+    health: 'Phúc Lộc Thọ tam tinh chiếu mệnh. Sức khỏe dồi dào như tuổi trẻ, tinh thần minh mẫn. Ăn uống ngon miệng, ngủ ngon giấc. Nên dùng nhân sâm, linh chi, đông trùng hạ thảo để bổ dưỡng.',
+    image: ''
   },
 ];
 
@@ -132,21 +138,24 @@ const FortunePage: React.FC = () => {
       </button>
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8">
-        {showResult ? (
+        {!showResult ? (
           <div className="max-w-2xl w-full">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 glow-text text-center">
-              🔮 Giao Quẻ Đầu Năm 🔮
+              🔮 Cầu Quẻ Đầu Xuân 🔮
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 mb-12 text-center">
-              Khám phá vận mệnh năm mới của bạn
+            <p className="text-xl md:text-2xl text-white/90 mb-8 text-center italic">
+              Thiên cơ khó lường, quẻ số định phận
+            </p>
+            <p className="text-lg md:text-xl text-white/80 mb-12 text-center">
+              Hãy nhập thông tin bản mệnh để Thần Tiên chỉ lối
             </p>
 
-            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl">
+            <form onSubmit={handleSubmit} className="bg-white/10 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-yellow-400/30">
               {/* Date of Birth */}
               <div className="mb-8">
-                <label className="block text-white text-lg font-semibold mb-4">
-                  Ngày tháng năm sinh
+                <label className="block text-white text-lg font-semibold mb-4 text-center">
+                  📅 Ngày Giờ Sinh (Âm Lịch hoặc Dương Lịch)
                 </label>
                 <div className="grid grid-cols-3 gap-4">
                   <input
@@ -184,8 +193,8 @@ const FortunePage: React.FC = () => {
 
               {/* Gender */}
               <div className="mb-8">
-                <label className="block text-white text-lg font-semibold mb-4">
-                  Giới tính
+                <label className="block text-white text-lg font-semibold mb-4 text-center">
+                  ⚖️ Âm Dương Bản Mệnh
                 </label>
                 <div className="grid grid-cols-2 gap-4">
                   <button
@@ -216,9 +225,9 @@ const FortunePage: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-tet-gold to-yellow-500 text-gray-900 py-4 px-8 rounded-xl font-bold text-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 mb-4"
+                className="w-full bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-gray-900 py-4 px-8 rounded-xl font-bold text-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 mb-4 border-2 border-yellow-300"
               >
-                ✨ Xem Quẻ ✨
+                🙏 Cầu Quẻ Đầu Xuân 🙏
               </button>
 
               <button
@@ -232,39 +241,42 @@ const FortunePage: React.FC = () => {
           </div>
         ) : (
           <div className="max-w-4xl w-full animate-scale-in">
-            <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl">
+            <div className="bg-gradient-to-br from-yellow-50 via-white to-red-50 rounded-3xl p-8 md:p-12 shadow-2xl border-4 border-yellow-400">
               {/* Fortune Title */}
               <div className="text-center mb-8">
-                <h2 className="text-3xl md:text-5xl font-bold text-tet-red mb-4 glow-text">
+                <div className="text-6xl mb-6">🎊 ✨ 🎉</div>
+                <h2 className="text-3xl md:text-5xl font-bold mb-4" style={{color: '#D32F2F', textShadow: '0 2px 4px rgba(211,47,47,0.3)'}}>
                   {fortune?.title}
                 </h2>
-                <div className="text-6xl mb-6">🎊🎉✨</div>
+                <div className="text-lg md:text-xl italic" style={{color: '#666'}}>
+                  「 Thiên cơ bất lộ, nhân duyên tự định 」
+                </div>
               </div>
 
               {/* Fortune Content */}
               <div className="space-y-6">
-                <div className="bg-gradient-to-r from-yellow-50 to-red-50 rounded-2xl p-6">
-                  <h3 className="text-2xl font-bold text-tet-red mb-3">📜 Tổng Quan</h3>
-                  <p className="text-gray-700 text-lg leading-relaxed">{fortune?.overview}</p>
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6 border-l-4 border-yellow-500">
+                  <h3 className="text-2xl font-bold mb-3" style={{color: '#D32F2F'}}>🌟 Tổng Quát Vận Mệnh</h3>
+                  <p className="text-gray-700 text-lg leading-relaxed italic">{fortune?.overview}</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6">
-                  <h3 className="text-2xl font-bold text-purple-700 mb-3">💼 Công Việc - Học Tập</h3>
+                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-6 border-l-4 border-blue-500">
+                  <h3 className="text-2xl font-bold mb-3" style={{color: '#1976D2'}}>💼 Quan Lộc Sự Nghiệp</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">{fortune?.career}</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-green-50 to-yellow-50 rounded-2xl p-6">
-                  <h3 className="text-2xl font-bold text-green-700 mb-3">💰 Tài Lộc</h3>
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl p-6 border-l-4 border-green-500">
+                  <h3 className="text-2xl font-bold mb-3" style={{color: '#388E3C'}}>💰 Tài Vận Phú Quý</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">{fortune?.wealth}</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-pink-50 to-red-50 rounded-2xl p-6">
-                  <h3 className="text-2xl font-bold text-pink-700 mb-3">💕 Tình Cảm</h3>
+                <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-2xl p-6 border-l-4 border-pink-500">
+                  <h3 className="text-2xl font-bold mb-3" style={{color: '#C2185B'}}>💕 Tình Duyên Hôn Nhân</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">{fortune?.love}</p>
                 </div>
 
-                <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-2xl p-6">
-                  <h3 className="text-2xl font-bold text-teal-700 mb-3">🏥 Sức Khỏe</h3>
+                <div className="bg-gradient-to-r from-teal-50 to-cyan-50 rounded-2xl p-6 border-l-4 border-teal-500">
+                  <h3 className="text-2xl font-bold mb-3" style={{color: '#00796B'}}>🏥 Sức Khỏe Phúc Thọ</h3>
                   <p className="text-gray-700 text-lg leading-relaxed">{fortune?.health}</p>
                 </div>
               </div>
@@ -273,16 +285,23 @@ const FortunePage: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mt-10">
                 <button
                   onClick={handleReset}
-                  className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-r from-purple-500 to-indigo-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-purple-300"
                 >
-                  🔄 Xem Lại
+                  🔄 Cầu Quẻ Lại
                 </button>
                 <button
                   onClick={() => navigate('/')}
-                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-400"
                 >
                   🏠 Về Trang Chủ
                 </button>
+              </div>
+              
+              {/* Fortune Disclaimer */}
+              <div className="text-center mt-8 pt-6 border-t-2 border-yellow-300">
+                <p className="text-sm italic" style={{color: '#888'}}>
+                  ✨ Vận mệnh do trời định, phúc lành do ta tạo. Lời quẻ chỉ mang tính tham khảo, hãy luôn tích cực và nỗ lực ✨
+                </p>
               </div>
             </div>
           </div>
