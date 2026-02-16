@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface Blossom {
   id: number;
@@ -6,6 +6,7 @@ interface Blossom {
   duration: number;
   size: number;
   delay: number;
+  progress: number;
 }
 
 const getRandomBlossom = (id: number): Blossom => ({
@@ -14,6 +15,7 @@ const getRandomBlossom = (id: number): Blossom => ({
   duration: 3 + Math.random() * 3,
   size: 24 + Math.random() * 24,
   delay: Math.random() * 5,
+  progress: 0,
 });
 
 const CherryBlossomRain: React.FC<{ count: number }> = ({ count }) => {
@@ -21,41 +23,35 @@ const CherryBlossomRain: React.FC<{ count: number }> = ({ count }) => {
     Array.from({ length: count }, (_, i) => getRandomBlossom(i))
   );
 
-  // Each blossom has a progress (0 to 1), when reaches 1, respawn
   useEffect(() => {
     const interval = setInterval(() => {
       setBlossoms(prev => prev.map(b => {
-        // progress: how far the blossom has fallen (0 to 1)
-        if (!('progress' in b)) (b as any).progress = 0;
-        (b as any).progress += 0.01 / b.duration;
-        if ((b as any).progress >= 1) {
-          return { ...getRandomBlossom(b.id) };
+        const nextProgress = b.progress + 0.01 / b.duration;
+        if (nextProgress >= 1) {
+          return { ...getRandomBlossom(b.id), progress: 0 };
         }
-        return { ...b };
+        return { ...b, progress: nextProgress };
       }));
-    }, 16); // ~60fps
+    }, 16);
     return () => clearInterval(interval);
   }, [count]);
 
   return (
     <div className="absolute inset-0 pointer-events-none z-30">
-      {blossoms.map((b, i) => {
-        const progress = (b as any).progress || 0;
-        return (
-          <span
-            key={b.id}
-            className="absolute blossom"
-            style={{
-              left: `${b.left}%`,
-              top: `calc(-40px + ${progress * 110}vh)`,
-              fontSize: `${b.size}px`,
-              opacity: 1 - progress * 0.3,
-              transition: 'none',
-              pointerEvents: 'none',
-            }}
-          >🌸</span>
-        );
-      })}
+      {blossoms.map((b) => (
+        <span
+          key={b.id}
+          className="absolute blossom"
+          style={{
+            left: `${b.left}%`,
+            top: `calc(-40px + ${b.progress * 110}vh)`,
+            fontSize: `${b.size}px`,
+            opacity: 1 - b.progress * 0.3,
+            transition: 'none',
+            pointerEvents: 'none',
+          }}
+        >🌸</span>
+      ))}
     </div>
   );
 };
