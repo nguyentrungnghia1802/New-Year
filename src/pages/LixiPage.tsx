@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAudio } from '../contexts/AudioContext';
+import { useAudioManager } from '../contexts/AudioManager';
 
 interface LixiEnvelope {
   id: number;
   amount: number;
   message: string;
-  color: string;
+  moneyImage: string;
 }
 
-const LIXI_AMOUNTS = [
-  { amount: 500000, message: 'May mắn ngập tràn, năm nay bùng nổ! 🎉', color: '#FF1493' },
-  { amount: 200000, message: 'Tài lộc hanh thông, vạn sự như mơ! 💰', color: '#FFD700' },
-  { amount: 100000, message: 'Lộc vừa đủ, niềm vui tròn đầy! 🌟', color: '#FF6B6B' },
-  { amount: 100000, message: 'Một trăm nghìn hạnh phúc tràn đầy! ✨', color: '#4ECDC4' },
-  { amount: 50000, message: 'Vạn sự suôn sẻ, thuận buồm xuôi gió! ⛵', color: '#FFA500' },
-  { amount: 20000, message: 'Bình an cả năm, mọi điều an lành! 🕊️', color: '#9370DB' },
-  { amount: 10000, message: 'Niềm vui nho nhỏ, hạnh phúc lớn dài! 😊', color: '#FF69B4' },
-  { amount: 1000, message: 'Nhỏ mà có võ, vui là chính! 🤗', color: '#32CD32' },
+const LIXI_DATA = [
+  { amount: 2000, message: 'Song hỷ lâm môn — May mắn nhân đôi!', moneyImage: '/images/money/2000.png' },
+  { amount: 5000, message: 'Phúc lộc dồi dào — Tài lộc tràn trề!', moneyImage: '/images/money/5000.png' },
+  { amount: 10000, message: 'Vạn sự như ý — Điều gì cũng thành!', moneyImage: '/images/money/10000.png' },
+  { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!', moneyImage: '/images/money/20000.png' },
+  { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!', moneyImage: '/images/money/50000.png' },
+  { amount: 100000, message: 'Nghìn vàng mười bạc — Giàu sang phú quý!', moneyImage: '/images/money/100000.png' },
+  { amount: 200000, message: 'Tài vận hanh thông — Của cải luôn đầy!', moneyImage: '/images/money/200000.png' },
+  { amount: 500000, message: 'Đại phát đại lợi — Thành công rực rỡ!', moneyImage: '/images/money/500000.png' },
 ];
 
 const LixiPage: React.FC = () => {
   const navigate = useNavigate();
-  const { playSound } = useAudio();
+  const { muted, toggleMute } = useAudioManager();
   const [envelopes, setEnvelopes] = useState<LixiEnvelope[]>([]);
   const [selectedEnvelope, setSelectedEnvelope] = useState<LixiEnvelope | null>(null);
   const [isOpening, setIsOpening] = useState(false);
 
   const shuffleEnvelopes = () => {
-    const shuffled = [...LIXI_AMOUNTS]
+    const shuffled = [...LIXI_DATA]
       .sort(() => Math.random() - 0.5)
       .map((item, index) => ({
         id: index,
@@ -44,67 +44,71 @@ const LixiPage: React.FC = () => {
   const handleEnvelopeClick = (envelope: LixiEnvelope) => {
     if (isOpening) return;
     
-    playSound('lixi');
     setIsOpening(true);
     setSelectedEnvelope(envelope);
   };
 
   const handleTryAgain = () => {
-    playSound('click');
     setSelectedEnvelope(null);
     setIsOpening(false);
     shuffleEnvelopes();
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('vi-VN', {
-      style: 'currency',
-      currency: 'VND',
-    }).format(amount);
+    return amount.toLocaleString('vi-VN') + 'đ';
   };
 
   return (
-    <div className="relative min-h-screen w-full bg-gradient-to-br from-red-600 via-red-500 to-orange-500 overflow-hidden">
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 text-6xl animate-bounce">🧧</div>
-        <div className="absolute top-20 right-20 text-6xl animate-bounce" style={{ animationDelay: '0.5s' }}>🧧</div>
-        <div className="absolute bottom-20 left-20 text-6xl animate-bounce" style={{ animationDelay: '1s' }}>🧧</div>
-        <div className="absolute bottom-10 right-10 text-6xl animate-bounce" style={{ animationDelay: '1.5s' }}>🧧</div>
-      </div>
+    <div className="relative min-h-screen w-full bg-gradient-to-br from-orange-100 via-yellow-50 to-red-100 overflow-hidden">
+      {/* Background decoration with traditional bridge/pagoda illustration */}
+      <div className="absolute inset-0 opacity-20 bg-cover bg-center" style={{backgroundImage: 'url(/images/background/traditional-bg.png)'}}></div>
+      
+      {/* Mute/Unmute Button */}
+      <button
+        onClick={toggleMute}
+        className="fixed top-4 right-4 z-50 bg-yellow-400/70 hover:bg-yellow-300/80 rounded-full p-3 shadow-lg transition"
+        aria-label="Tắt/mở nhạc nền"
+      >
+        {muted ? (
+          <span role="img" aria-label="Unmute">🔇</span>
+        ) : (
+          <span role="img" aria-label="Mute">🔊</span>
+        )}
+      </button>
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 glow-text text-center">
-          🧧 Bốc Lì Xì May Mắn 🧧
+        {/* Header */}
+        <h1 className="text-3xl md:text-5xl font-bold mb-8 text-center" style={{color: '#FF6B35', textShadow: '0 2px 4px rgba(0,0,0,0.2)'}}>
+          CHỌN LÌ XÌ HAY MẮN
         </h1>
-        
-        <p className="text-xl md:text-2xl text-white/90 mb-12 text-center">
-          Chọn một bao lì xì để nhận quà may mắn!
+        <p className="text-lg md:text-xl mb-8 text-center italic" style={{color: '#888'}}>
+          Lộc xuân của bạn đã là điểm
         </p>
 
         {/* Envelopes Grid */}
         {!selectedEnvelope && (
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12 max-w-6xl w-full">
-            {envelopes.map((envelope) => (
+            {envelopes.map((envelope, index) => (
               <button
                 key={envelope.id}
                 onClick={() => handleEnvelopeClick(envelope)}
-                className="group relative aspect-[3/4] transform hover:scale-110 transition-all duration-300"
+                className="group relative aspect-[3/4] transform hover:scale-110 transition-all duration-300 animate-float"
+                style={{animationDelay: `${index * 0.1}s`}}
                 disabled={isOpening}
               >
-                <div
-                  className="absolute inset-0 rounded-2xl shadow-2xl"
-                  style={{ backgroundColor: envelope.color }}
-                />
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
-                  <div className="text-6xl md:text-8xl mb-4 group-hover:scale-125 transition-transform">
-                    🧧
-                  </div>
-                  <div className="text-white font-bold text-lg md:text-xl opacity-0 group-hover:opacity-100 transition-opacity">
-                    Nhấn vào đây
+                {/* Red Envelope */}
+                <div className="absolute inset-0 rounded-lg shadow-2xl bg-gradient-to-b from-red-600 to-red-700 border-4 border-yellow-500 overflow-hidden">
+                  {/* Gold decorative pattern */}
+                  <div className="absolute top-0 left-0 right-0 h-1/4 bg-gradient-to-b from-yellow-400 to-transparent opacity-30"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-yellow-400 to-transparent opacity-30"></div>
+                  
+                  {/* Fu symbol */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 md:w-28 md:h-28 rounded-full bg-yellow-400 flex items-center justify-center shadow-xl border-4 border-yellow-500 group-hover:scale-125 transition-transform duration-300">
+                      <span className="text-4xl md:text-5xl font-bold" style={{color: '#D32F2F'}}>福</span>
+                    </div>
                   </div>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
               </button>
             ))}
           </div>
@@ -112,64 +116,74 @@ const LixiPage: React.FC = () => {
 
         {/* Result Display */}
         {selectedEnvelope && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4 animate-fade-in">
-            <div className="bg-white rounded-3xl p-8 md:p-12 max-w-2xl w-full shadow-2xl animate-scale-in">
-              {/* Fireworks Effect */}
+          <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 px-4 animate-fade-in">
+            <div className="bg-gradient-to-br from-yellow-900 to-red-900 rounded-3xl p-6 md:p-12 max-w-2xl w-full shadow-2xl border-4 border-yellow-400 animate-scale-in">
+              {/* Close button */}
+              <button
+                onClick={handleTryAgain}
+                className="absolute top-4 right-4 text-white text-2xl hover:text-yellow-400 transition"
+              >
+                ✕
+              </button>
+
+              {/* Header */}
               <div className="text-center mb-6">
-                <div className="text-6xl md:text-8xl mb-4 animate-bounce">
-                  🎉🎊✨
+                <h2 className="text-2xl md:text-4xl font-bold mb-4" style={{color: '#FFD700', textShadow: '0 0 20px rgba(255, 215, 0, 0.5)'}}>
+                  CHÚC MỪNG NĂM MỚI!
+                </h2>
+                <p className="text-base md:text-lg italic" style={{color: '#FFF8DC'}}>
+                  Lộc xuân của bạn đã là điểm
+                </p>
+              </div>
+
+              {/* Money Image */}
+              <div className="mb-6 bg-white rounded-xl p-4 shadow-2xl">
+                <img
+                  src={selectedEnvelope.moneyImage}
+                  alt={`${selectedEnvelope.amount}đ`}
+                  className="w-full h-auto rounded"
+                  onError={(e) => {
+                    // Fallback if image doesn't exist
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                  }}
+                />
+                {/* Fallback display if image doesn't load */}
+                <div className="text-center py-8">
+                  <div className="text-6xl md:text-8xl mb-4">💵</div>
+                  <div className="text-4xl md:text-6xl font-bold" style={{color: '#D32F2F'}}>
+                    {formatCurrency(selectedEnvelope.amount)}
+                  </div>
                 </div>
               </div>
 
-              {/* Money Display */}
+              {/* Blessing Message */}
               <div className="text-center mb-8">
-                <div className="text-8xl md:text-9xl mb-6">
-                  💵
-                </div>
-                <div className="text-5xl md:text-6xl font-bold text-tet-red mb-4">
-                  {formatCurrency(selectedEnvelope.amount)}
-                </div>
-                <div
-                  className="text-2xl md:text-3xl font-bold mb-6 px-6 py-4 rounded-2xl text-white"
-                  style={{ backgroundColor: selectedEnvelope.color }}
-                >
+                <p className="text-xl md:text-2xl font-bold" style={{color: '#FFD700'}}>
                   {selectedEnvelope.message}
-                </div>
+                </p>
               </div>
 
-              {/* Decorative Elements */}
-              <div className="flex justify-center gap-4 text-4xl mb-8">
-                <span className="animate-bounce">🌟</span>
-                <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>✨</span>
-                <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>💫</span>
-                <span className="animate-bounce" style={{ animationDelay: '0.3s' }}>⭐</span>
-              </div>
-
-              {/* Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              {/* Button */}
+              <div className="text-center">
                 <button
                   onClick={handleTryAgain}
-                  className="bg-gradient-to-r from-tet-red to-pink-500 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+                  className="bg-gradient-to-r from-red-600 to-red-700 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-yellow-400"
                 >
-                  🔄 Bốc Lại
-                </button>
-                <button
-                  onClick={() => navigate('/')}
-                  className="bg-gradient-to-r from-gray-600 to-gray-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-                >
-                  🏠 Về Trang Chủ
+                  NHẬN LỘC TIẾP
                 </button>
               </div>
             </div>
           </div>
         )}
 
+        {/* Home Button */}
         {!selectedEnvelope && (
           <button
             onClick={() => navigate('/')}
-            className="mt-8 bg-white/20 backdrop-blur-sm text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white/30 transition-all duration-300"
+            className="mt-8 bg-white/80 backdrop-blur-sm text-gray-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-white transition-all duration-300 shadow-lg border-2 border-gray-300"
           >
-            🏠 Về Trang Chủ
+            🏠 VỀ TRANG CHỦ
           </button>
         )}
       </div>
@@ -195,12 +209,25 @@ const LixiPage: React.FC = () => {
           }
         }
         
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+        
         .animate-fade-in {
           animation: fade-in 0.3s ease-out;
         }
         
         .animate-scale-in {
           animation: scale-in 0.4s ease-out;
+        }
+        
+        .animate-float {
+          animation: float 3s ease-in-out infinite;
         }
       `}</style>
     </div>

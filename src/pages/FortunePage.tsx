@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAudio } from '../contexts/AudioContext';
+import { useAudioManager } from '../contexts/AudioManager';
 
 interface FortuneResult {
   title: string;
@@ -65,7 +65,7 @@ const FORTUNES: FortuneResult[] = [
 
 const FortunePage: React.FC = () => {
   const navigate = useNavigate();
-  const { playSound } = useAudio();
+  const { muted, toggleMute } = useAudioManager();
   
   const [formData, setFormData] = useState({
     day: '',
@@ -84,7 +84,7 @@ const FortunePage: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     if (!formData.day || !formData.month || !formData.year || !formData.gender) {
@@ -92,10 +92,8 @@ const FortunePage: React.FC = () => {
       return;
     }
     
-    playSound('fortune');
-    
     // Thuật toán random có điều kiện dựa trên ngày sinh
-    const seed = parseInt(formData.day) + parseInt(formData.month) + parseInt(formData.year);
+    const seed = Number.parseInt(formData.day) + Number.parseInt(formData.month) + Number.parseInt(formData.year);
     const index = seed % FORTUNES.length;
     
     setTimeout(() => {
@@ -105,7 +103,6 @@ const FortunePage: React.FC = () => {
   };
 
   const handleReset = () => {
-    playSound('click');
     setFormData({ day: '', month: '', year: '', gender: '' });
     setFortune(null);
     setShowResult(false);
@@ -121,8 +118,21 @@ const FortunePage: React.FC = () => {
         <div className="absolute bottom-10 right-10 text-6xl animate-spin" style={{ animationDuration: '15s' }}>⭐</div>
       </div>
 
+      {/* Mute/Unmute Button */}
+      <button
+        onClick={toggleMute}
+        className="fixed top-4 right-4 z-50 bg-yellow-400/70 hover:bg-yellow-300/80 rounded-full p-3 shadow-lg transition"
+        aria-label="Tắt/mở nhạc nền"
+      >
+        {muted ? (
+          <span role="img" aria-label="Unmute">🔇</span>
+        ) : (
+          <span role="img" aria-label="Mute">🔊</span>
+        )}
+      </button>
+
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 py-8">
-        {!showResult ? (
+        {showResult ? (
           <div className="max-w-2xl w-full">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 glow-text text-center">
               🔮 Giao Quẻ Đầu Năm 🔮
