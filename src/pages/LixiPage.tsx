@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAudioManager } from '../contexts/AudioManager';
 
@@ -32,7 +32,14 @@ const getMoneyImagePath = (amount: number): string => {
 const LixiPage: React.FC = () => {
   const navigate = useNavigate();
   const { muted, toggleMute } = useAudioManager();
-  const [envelopes, setEnvelopes] = useState<LixiEnvelope[]>([]);
+  const [envelopes, setEnvelopes] = useState<LixiEnvelope[]>(() => {
+    return [...LIXI_DATA]
+      .sort(() => Math.random() - 0.5)
+      .map((item, index) => ({
+        id: index,
+        ...item,
+      }));
+  });
   const [selectedEnvelope, setSelectedEnvelope] = useState<LixiEnvelope | null>(null);
   const [isOpening, setIsOpening] = useState(false);
 
@@ -45,10 +52,6 @@ const LixiPage: React.FC = () => {
       }));
     setEnvelopes(shuffled);
   };
-
-  useEffect(() => {
-    shuffleEnvelopes();
-  }, []);
 
   const handleEnvelopeClick = (envelope: LixiEnvelope) => {
     if (isOpening) return;
