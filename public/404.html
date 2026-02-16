@@ -3,19 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting...</title>
+  <title>New Year 2027</title>
   <script>
-    // GitHub Pages SPA redirect trick
-    // Save the current path and redirect to index.html
-    try {
-      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
-    } catch (e) {
-      // Ignore storage errors
-    }
-    location.replace(location.origin + location.pathname.split('/').slice(0, -1).join('/') + '/');
+    // Redirect all 404s to index.html for SPA routing
+    var pathSegments = location.pathname.split('/').filter(function(s) { return s; });
+    var newPath = '/' + (pathSegments[0] || '');
+    location.replace(newPath + '/' + (location.search || '') + (location.hash || ''));
   </script>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <p>Loading...</p>
 </body>
 </html>
