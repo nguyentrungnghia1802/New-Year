@@ -1,16 +1,16 @@
 import React from 'react';
-import { useAudio } from '../contexts/AudioContext';
+import { useAudioManager } from '../contexts/AudioManager';
 
 const AudioControl: React.FC = () => {
-  const { isMuted, toggleMute } = useAudio();
+  const { muted, toggleMute } = useAudioManager();
 
   return (
     <button
       onClick={toggleMute}
       className="fixed top-4 right-4 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-tet-red to-tet-gold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group"
-      aria-label={isMuted ? 'Bật nhạc' : 'Tắt nhạc'}
+      aria-label={muted ? 'Bật nhạc' : 'Tắt nhạc'}
     >
-      {isMuted ? (
+      {muted ? (
         <svg
           className="w-7 h-7 text-white group-hover:scale-110 transition-transform"
           fill="none"
