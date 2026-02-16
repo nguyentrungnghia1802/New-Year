@@ -12,6 +12,7 @@ const LIXI_DATA = [
   { amount: 500, message: 'Lộc nhỏ cũng là lộc — May mắn luôn bên bạn!' },
   { amount: 5000, message: 'Phúc lộc dồi dào — Tài lộc tràn trề!' },
   { amount: 10000, message: 'Vạn sự như ý — Điều gì cũng thành!' },
+  { amount: 10000, message: 'Vạn điều như ý — An khang thịnh vượng!' },
   { amount: 20000, message: 'Tiền tài rủng rỉnh — Cuộc sống no đầy!' },
   { amount: 50000, message: 'Tấn tài tấn lộc — Thịnh vượng vô biên!' },
 ];
