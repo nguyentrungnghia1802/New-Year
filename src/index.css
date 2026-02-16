@@ -1,0 +1,78 @@
+@keyframes horse-run {
+  0% { transform: translateX(-100px) scaleX(1); }
+  50% { transform: translateX(100vw) scaleX(1); }
+  55% { transform: translateX(100vw) scaleX(-1); }
+  100% { transform: translateX(-100px) scaleX(-1); }
+}
+.animate-horse {
+  animation: horse-run 6s linear infinite;
+}
+
+@keyframes blossom-fall {
+  0% { opacity: 1; transform: translateY(0) rotate(0deg); }
+  100% { opacity: 0.7; transform: translateY(100vh) rotate(360deg); }
+}
+.blossom {
+  animation: blossom-fall 4s linear infinite;
+}
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Dancing Script', cursive;
+  }
+}
+
+@layer utilities {
+  .glow-text {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8),
+                 0 0 20px rgba(255, 215, 0, 0.6),
+                 0 0 30px rgba(255, 215, 0, 0.4);
+  }
+
+  .tet-gradient {
+    background: linear-gradient(135deg, #D32F2F 0%, #FFC107 100%);
+  }
+
+  .gold-shine {
+    background: linear-gradient(90deg, #FFD700, #FFA500, #FFD700);
+    background-size: 200% auto;
+    animation: gold-shimmer 3s linear infinite;
+  }
+
+  @keyframes gold-shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+}
