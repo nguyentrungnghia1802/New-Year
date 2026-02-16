@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="redGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC2626;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#991B1B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FCD34D;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="50" cy="50" r="48" fill="url(#redGrad)"/>
+  
+  <!-- Gold Border -->
+  <circle cx="50" cy="50" r="48" fill="none" stroke="url(#goldGrad)" stroke-width="4"/>
+  
+  <!-- Inner Gold Circle -->
+  <circle cx="50" cy="50" r="35" fill="url(#goldGrad)"/>
+  
+  <!-- Fu Character (福 - Fortune) -->
+  <text x="50" y="68" font-family="serif" font-size="42" font-weight="bold" fill="#DC2626" text-anchor="middle">福</text>
+  
+  <!-- Decorative Stars -->
+  <path d="M 25 15 L 27 20 L 32 20 L 28 23 L 30 28 L 25 25 L 20 28 L 22 23 L 18 20 L 23 20 Z" fill="#FCD34D" opacity="0.8"/>
+  <path d="M 75 85 L 77 90 L 82 90 L 78 93 L 80 98 L 75 95 L 70 98 L 72 93 L 68 90 L 73 90 Z" fill="#FCD34D" opacity="0.8"/>
+</svg>
